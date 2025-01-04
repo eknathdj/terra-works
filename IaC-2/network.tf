@@ -1,5 +1,6 @@
 resource "azurerm_resource_group" "terra-res" {
-  name     = "terra-res2"
+  for_each = toset (["centralindia", "eastus"])
+  name     = each.value
   location = "centralindia"
   tags = {
     env = "dev"
@@ -20,15 +21,18 @@ resource "azurerm_resource_group" "terra-res" {
 #   address_prefixes = ["10.0.1.0/24"]
 # }
 
-resource "azurerm_storage_account" "terra-store" {
-  count                    = 2
-  name                     = "terrastorageexek${count.index}"
-  resource_group_name      = azurerm_resource_group.terra-res.name
-  location                 = azurerm_resource_group.terra-res.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+# resource "azurerm_storage_account" "terra-store" {
+#   for_each = {
+#      centralindia = "terrastoreek1na"
+#      eastus = "terrastoreek2na"
+#   }
+#   name                     = each.value
+#   resource_group_name      = azurerm_resource_group.terra-res.name
+#   location                 = each.key
+#   account_tier             = "Standard"
+#   account_replication_type = "LRS"
 
-}
+# }
 
 # resource "azurerm_storage_container" "terra-cont" {
 #   count                = 2
