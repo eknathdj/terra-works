@@ -5,6 +5,12 @@ terraform {
       version = "4.14.0"
     }
   }
+  # backend "azurerm" {
+  #   resource_group_name  = "terra-intro"
+  #   storage_account_name = "terrastorageekn1999x"
+  #   container_name       = "terra-cont"
+  #   key                  = "terraform.tfstate"
+  # }
 }
 
 provider "azurerm" {
