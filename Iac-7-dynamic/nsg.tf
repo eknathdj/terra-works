@@ -9,7 +9,7 @@ resource "azurerm_network_security_group" "nsg-terra" {
   resource_group_name = azurerm_resource_group.rg-test.name
 
   tags = {
-    environment = "test"
+    environment = "dev"
     managed_by  = "terraform"
   }
 
@@ -28,14 +28,14 @@ resource "azurerm_network_security_group" "nsg-terra" {
     }
   }
   dynamic "security_rule" {
-    for_each = var.nsg1
+    for_each = var.nsg
     content {
-      name                       = security_rule.key
-      priority                   = tonumber(security_rule.value[0])
+      name                       = "${security_rule.key}-outbound"
+      priority                   = tonumber(security_rule.value[0]) + 100
       direction                  = "Outbound"
       access                     = "Allow"
       protocol                   = security_rule.value[1]
-      source_port_range          = security_rule.value[2]
+      source_port_range          = "*"
       destination_port_range     = security_rule.value[3]
       source_address_prefix      = "*"
       destination_address_prefix = "*"
