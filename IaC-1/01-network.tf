@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "terratest" {
   tags = {
     "env" = "dev"
   }
-}
+
 
 resource "azurerm_public_ip" "public" {
   name                = "pub-vm"
