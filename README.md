@@ -1,3 +1,3 @@
-##DevOps Concept###
+## DevOps Concepts
 
-Tweaking on different devops concepts from fundamental to experience.
+- Tweaking on different devops concepts from fundamental to experience.
